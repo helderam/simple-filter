@@ -45,7 +45,7 @@ return [
     'connections' => [
 
         'sac5' => [
-            'prefix' => env('DB_PREFIX', 'BI_'),
+            'prefix' => env('DB_PREFIX'),
             'driver' => 'oracle',
             'host' => env('DB_HOST'),
             'port' => env('DB_PORT'),

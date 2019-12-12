@@ -22,10 +22,11 @@ class GroupProgramController extends Controller
     {
         #var_dump(session()->all());
         // Obtem quantidade de registros, coluna de ordenação e ordem 
-        list($records, $column, $order) = simpleParameters('active', 'asc');
+        list($records, $column, $order) = simpleParameters('active', 'desc');
 
         // Recupera o grupo selecionado na sessão
         $group = session('group');
+        if (empty($group)) return redirect()->route('home');
 
         // Campos de filtragem
         $name = simpleFilter('name', 'Nome');

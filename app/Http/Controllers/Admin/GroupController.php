@@ -21,12 +21,13 @@ class GroupController extends Controller
      */
     public function index()
     {
-        #var_dump(session()->all());
         // Obtem quantidade de registros, coluna de ordenação e ordem 
         list($records, $column, $order) = simpleParameters('id');
 
         // Campos de filtragem
         $name = simpleFilter('name', 'Nome');
+        #var_dump(session()->all());
+        #var_dump($name);
 
         // Seleciona os registros, filtra e ordena
         $registros = Group::orderBy($column, $order);
@@ -105,6 +106,7 @@ class GroupController extends Controller
                 $groupUser = new GroupUser();
                 $groupUser->user_id = $user->id;
                 $groupUser->group_id = $id;
+                $groupUser->active = 'N';
                 $groupUser->save();
             }
         }

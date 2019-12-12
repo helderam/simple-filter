@@ -21,13 +21,12 @@ class GroupUserController extends Controller
     public function index()
     {
         $group = session('group');
-        if (empty($group))
-            return redirect()->route('home')->with('error', 'Sessão Expirada');
+        if (empty($group)) return redirect()->route('home');
         #Redirect::to('home')->send();
 
         #var_dump(session()->all());
         // Obtem quantidade de registros, coluna de ordenação e ordem 
-        list($records, $column, $order) = simpleParameters('active,id', 'asc');
+        list($records, $column, $order) = simpleParameters('active', 'desc');
 
         // Campos de filtragem
         $name = simpleFilter('name', 'Nome');
@@ -51,6 +50,7 @@ class GroupUserController extends Controller
                 'group_users.active'
             )
             ->orderBy($column, $order);
+            #->toSql(); dd($registros);
 
         if ($name) $registros->whereRaw('lower(bi_users.name) like ?', strtolower("%{$name}%")); # Desconsidera case
         if ($email) $registros->whereRaw('lower(bi_users.email) like ?', strtolower("%{$email}%")); # Desconsidera case

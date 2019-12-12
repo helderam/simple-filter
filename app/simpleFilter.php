@@ -179,9 +179,12 @@ function simpleParameters($default_column, $order = 'desc')
   #var_dump($controller);
   #echo phpinfo(); exit;
   if ($controller != session('controller')) {
+    session(['controller_before' => session('controller')]);
     session(['controller' => $controller]);
     session(['column' => $default_column]);
     session(['order' => $order]);
+    session(['filters' => array()]);
+    session(['descriptions' => array()]);
   }
   $records = request('records', session('records', 5));
   $column = request('column', session('column')) ?? $default_column;
@@ -192,6 +195,7 @@ function simpleParameters($default_column, $order = 'desc')
       session(['order' => $order]);
     }
   }
+
   session(['records' => $records]);
   session(['column' => $column]);
 
@@ -206,16 +210,19 @@ function simpleParameters($default_column, $order = 'desc')
  * 
  * @return mixed
  */
-function simpleFilter($field, $description)
+function simpleFilter($field, $description='')
 {
+  $filters = session('filters', []);
   if (isset($_REQUEST[$field])) {
     $value = request($field);
-    session([$field => $value]);
+    $filters[$field] = $value;
+    session(['filters' => $filters]);
+    // Para trazer no cabeçalho da tabela
     $descriptions = session('descriptions');
     $descriptions[$description] = $value;
     session(['descriptions' => $descriptions]);
   }
-  return session($field);
+  return $filters[$field] ?? '';
 }
 
 /**
@@ -240,14 +247,25 @@ function simpleHeadTable($title, $route_create_new = null)
   }
   $filters = empty($filters) ? '' : 'Filtros: ' . substr($filters, 0, strlen($filters) - 2);
 
-  $include = $route_create_new ?
+  // Include button create new ?
+  $include_create_new = $route_create_new ?
     "
     <!-- BOTÃO PARA INCLUIR -->
     <a href='$route_create_new' class='btn btn-dark' data-style='zoom-in'>
       <span class='ladda-label'> <i class='fa fa-plus'></i> Incluir</span>
     </a>
     " : '';
+  /*
+    $route_back = session('controller_before');
+    $include_back = $route_back ?
+    "
+    <!-- BOTÃO PARA VOLTAR -->
+    <a href='$route_back' class='btn btn-dark' data-style='zoom-in'>
+      <span class='ladda-label'> <i class='fa fa-plus'></i> Voltar</span>
+    </a>
 
+    " : '';
+  */
   return "
     <div class='row'>
 
@@ -265,7 +283,7 @@ function simpleHeadTable($title, $route_create_new = null)
           <button class='btn btn-secondary' type='button' data-toggle='collapse' data-target='#filtros' aria-expanded='false' aria-controls='filtros'>
             Filtrar
           </button>
-          $include
+          $include_create_new
         </p>
       </div>
     </div>

@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\DB;
 
 class ProgramController extends Controller
 {
+    /*
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (empty(session('group')) 
+                return redirect()->route('groups.index');
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *
@@ -106,6 +115,7 @@ class ProgramController extends Controller
                 $groupProgram = new GroupProgram();
                 $groupProgram->program_id = $program->id;
                 $groupProgram->group_id = $id;
+                $groupProgram->active = 'N';
                 $groupProgram->save();
             }
         }

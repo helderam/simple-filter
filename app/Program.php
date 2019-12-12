@@ -17,6 +17,6 @@ class Program extends Model
 
     public static $rules = [
         'name' => "required|max:50",
-        'route' => 'required|min:5|max:20', #|unique:users', ATENÇÂO NÂO UTILIZAR UNIQUE POIS NAO FUNCIONA NO UPDATE
+        'route' => 'required|min:3|max:20', #|unique:users', ATENÇÂO NÂO UTILIZAR UNIQUE POIS NAO FUNCIONA NO UPDATE
     ];
 }
