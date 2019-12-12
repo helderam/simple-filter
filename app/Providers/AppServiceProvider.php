@@ -45,22 +45,32 @@ class AppServiceProvider extends ServiceProvider
                 and gu.user_id = $id
                 order by g.name desc, p.name 
                 ");
-
+            $route = substr($_SERVER['PATH_INFO'],1,100);
+            $encontrei = false;
             $grupos = [];
             foreach ($menus as $menu) {
                 $grupos[$menu->programa] = $menu->grupo;
                 $routes[$menu->programa] = $menu->route;
+                if ($menu->route == $route) $encontrei = true;
             }
-            #ksort($grupos);
+            #var_dump($encontrei); var_dump($route);
+            if (!$encontrei) {
+                #return redirect()->to("/home");
+                #->route('home')
+                #->with('error', 'Sem permissão!');
+                echo "SEM PERMISSÂO";
+                exit;
+            }
+
             $anterior = '';
-            foreach($grupos as $programa => $grupo ) {
-                if ($grupo != $anterior){
+            foreach ($grupos as $programa => $grupo) {
+                if ($grupo != $anterior) {
                     $anterior = $grupo;
                     $event->menu->add($grupo);
                 }
                 $event->menu->add(['text' => $programa, 'url' => $routes[$programa]]);
             }
-                    
+
             $event->menu->add('CONFIGURAÇÔES');
             $event->menu->add(['text' => 'profile', 'url' => 'admin/settings', 'icon' => 'fas fa-fw fa-user']);
 
