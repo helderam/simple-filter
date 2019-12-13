@@ -1,34 +1,22 @@
 @extends('adminlte::page')
 
-@section('title', 'Usuários')
+@section('title', 'Perfil')
 
 @section('content')
 
 <!-- MOSTRA MENSAGEM E ERROS -->
 <?php echo simpleMessage($errors) ?>
-<?php echo simpleFormHead('Cadastro Usuário', $user->id) ?> 
+<?php echo simpleFormHead('Perfil Usuário', $user->id) ?> 
 
 
 <!-- FORMULARIO -->
-@if ( isset($user->id) )
-<form action="{{ route('users.update', $user->id) }}" method="POST">
+<form action="{{ route('perfil-update') }}" method="POST">
   @method('PUT')
-  @else
-  <form action="{{ route('users.store') }}" method="POST">
-    @endif
-    @csrf
+  @csrf
     <div class="card card-body">
       <div class="row">
         <!--  PRIMEIRA COLUNA -->
         <div class="col">
-
-          <!-- ID -->
-          <div class="form-group row">
-            <label for="id" class="col-sm-2 col-form-label">Nome</label>
-            <div class="col-sm-10">
-              <input class="form-control form-control-sm" id="id" name="id" value="{{ old('id', $user->id) }}" placeholder="ID" readonly>
-            </div>
-          </div>
 
           <!-- NOME -->
           <div class="form-group row">
@@ -68,7 +56,7 @@
       </div> <!-- row -->
 
       <!-- BOTÕES -->
-      <?php echo simpleFormButtons(route('users.index')) ?>
+      <?php echo simpleFormButtons() ?>
 
     </div> <!-- card -->
   </form>

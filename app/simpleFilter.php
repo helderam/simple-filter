@@ -39,14 +39,15 @@ function simpleFormHead($title, $id)
  *
  * @return string
  */
-function simpleFormButtons($route)
+function simpleFormButtons($route='')
 {
   #$route = url()->previous(); #$_SERVER['PATH_INFO'];
+  $buttom = $route ? "<a href='$route' class='btn btn-secondary btn-sm'>Voltar a listagem</a>":'' ;
   $html = "  
   <div class='row'>
     <div class='col-sm-12'>
       <button type='submit' class='btn btn-dark btn-sm'>Salvar</button>
-      <a href='$route' class='btn btn-secondary btn-sm'>Voltar a listagem</a>
+      $buttom
     </div>
   </div>";
   return $html;
@@ -176,7 +177,7 @@ function simpleMenu($grupo_program, $icon, $submenus){
 
 function simpleSubmenu($grupo_program, $icon, $rota){
   $icon = $icon ?? 'cog';
-  return ['text' => $grupo_program, 'icon' => 'fas fa-fw fa-' . $icon, 'url' => $rota];
+  return ['text' => $grupo_program, 'icon' => 'fas fa-fw fa-' . $icon, 'url' => $rota, 'active' => [$rota,$rota.'/*',"regex:@^$rota\?*@"]];
 }
 /**
  * Store seseeion and return number os records, ordered column and direction
@@ -198,13 +199,13 @@ function simpleParameters($default_column, $order = 'desc')
       #return Redirect::to('/home');
       #header('Location: /home');
       echo "SEM PERMISSÂO";
-      dd(); // DESATIVAR AQUI PARA PERMITIR ACESSAR TODOS PROGRAMAS
+      dd('SEM PERMISSÂO'); // DESATIVAR AQUI PARA PERMITIR ACESSAR TODOS PROGRAMAS
     }
     session(['controller' => $controller]);
     session(['column' => $default_column]);
     session(['order' => $order]);
     session(['filters' => array()]);
-    session(['descriptions' => array()]);
+    session(['descriptions' => []]);
   }
   $records = request('records', session('records', 5));
   $column = request('column', session('column')) ?? $default_column;

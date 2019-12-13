@@ -66,6 +66,7 @@ class AppServiceProvider extends ServiceProvider
             }
             // Armazena memoria para depois validar cada mudança de programa
             $programs['home'] = 'home';
+            $programs['perfil'] = 'perfil';
             session(['programs' => $programs]);
 
             // Desenha menu
@@ -87,7 +88,7 @@ class AppServiceProvider extends ServiceProvider
                 [
                     'text' => 'CONFIGURAÇÔES', 'icon' => 'fas fa-fw fa-cog',
                     'submenu' => [
-                        ['text' => 'profile', 'url' => 'admin/settings', 'icon' => 'fas fa-fw fa-user']
+                        ['text' => 'Perfil', 'url' => '/perfil', 'icon' => 'fas fa-fw fa-user']
                     ]
                 ]
             );

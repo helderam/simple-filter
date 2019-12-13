@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 // Acrescentei classes
 use App\User;
 use Illuminate\Support\Facades\DB;
-use Adldap\AdldapInterface;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -166,4 +166,33 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function perfil()
+    {
+        // Obtem usuario
+        $user = User::Find(Auth::id());
+        #dd($user);
+        // Retorna para a view
+        return view('admin.users-perfil', compact('user'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function perfil_update(Request $request)
+    {
+        dd($request->all());
+        // Retorna para a view
+        return view('admin.users-perfil', compact('user'));
+    }
+
 }

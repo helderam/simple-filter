@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function()
         'users' => 'Admin\UserController',
     ]); 
     Route::get('/users/admin/{id}', 'Admin\UserController@admin')->name('users.admin');
+    Route::get('/perfil', 'Admin\UserController@perfil')->name('perfil');
+    Route::put('/perfil-update', 'Admin\UserController@perfil_update')->name('perfil-update');
 
     // Cadastro de programas
     Route::resources([
