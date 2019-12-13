@@ -35,7 +35,8 @@ class AppServiceProvider extends ServiceProvider
             $id = Auth::id();
             // Obtem menus permitidos e grupos
             $menus = DB::select(" 
-                select g.id, g.name grupo, u.name, p.name programa, gu.user_id, gp.program_id, p.route
+                select g.id, g.name grupo, u.name, p.name programa, gu.user_id, gp.program_id, 
+                       p.route, p.show_menu, p.icon, g.icon as group_icon
                 from sac5.bi_groups g
                 join sac5.bi_group_users gu on gu.group_id = g.id
                 join sac5.bi_group_programs gp on gp.group_id = g.id
@@ -45,56 +46,51 @@ class AppServiceProvider extends ServiceProvider
                 and gu.user_id = $id
                 order by g.name desc, p.name 
                 ");
-            $route = substr($_SERVER['PATH_INFO'],1,100);
-            $encontrei = false;
-            $grupos = [];
-            foreach ($menus as $menu) {
-                $grupos[$menu->programa] = $menu->grupo;
-                $routes[$menu->programa] = $menu->route;
-                if ($menu->route == $route) $encontrei = true;
-            }
-            #var_dump($encontrei); var_dump($route);
-            if (!$encontrei) {
-                #return redirect()->to("/home");
-                #->route('home')
-                #->with('error', 'Sem permissão!');
-                echo "SEM PERMISSÂO";
-                exit;
-            }
+            $route = substr($_SERVER['PATH_INFO'], 1, 100);
 
+            $program_groups = [];
+            $program_routes = [];
+            $program_icons = [];
+            $group_icons = [];
+            $programs = [];
             $anterior = '';
-            foreach ($grupos as $programa => $grupo) {
+
+            foreach ($menus as $menu) {
+                if ($menu->show_menu == 'S')
+                    $program_groups[$menu->programa] = $menu->grupo;
+                $program_routes[$menu->programa] = $menu->route;
+                $program_icons[$menu->programa] = $menu->icon;
+                $group_icons[$menu->grupo] = $menu->group_icon;
+                $programs[$menu->route] = $menu->programa;
+                if (!$anterior) $anterior = $menu->grupo;
+            }
+            // Armazena memoria para depois validar cada mudança de programa
+            $programs['home'] = 'home';
+            session(['programs' => $programs]);
+
+            // Desenha menu
+            $submenus = [];
+            foreach ($program_groups as $programa => $grupo) {
                 if ($grupo != $anterior) {
                     $anterior = $grupo;
-                    $event->menu->add($grupo);
+                    $event->menu->add(simpleMenu($grupo, $group_icons[$grupo], $submenus));
+                    $submenus = [];
                 }
-                $event->menu->add(['text' => $programa, 'url' => $routes[$programa]]);
+                $submenus[] = simpleSubmenu($programa, $program_icons[$programa], $program_routes[$programa]);
             }
+            #dd($submenus);
+            if (!empty($submenus))
+                $event->menu->add(simpleMenu($grupo, $group_icons[$grupo], $submenus));
 
-            $event->menu->add('CONFIGURAÇÔES');
-            $event->menu->add(['text' => 'profile', 'url' => 'admin/settings', 'icon' => 'fas fa-fw fa-user']);
-
-            /*
-            #$event->menu->add($menusPermitidos[0]);
-            $event->menu->add('MAIN NAVIGATION');
-            $event->menu->add([
-                'text' => 'Blog',
-                'url' => 'admin/blog',
-            ]);*/
-        });
-        /*
-        [
-            'text'    => 'GRUPO',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
+            // Menu comum a todos usuários 
+            $event->menu->add(
                 [
-                    'text'        => 'pages',
-                    
-                    'icon'        => 'far fa-fw fa-file',
-                    'label'       => 4,
-                    'label_color' => 'success',
-                ],
-            ],
-        ],*/
+                    'text' => 'CONFIGURAÇÔES', 'icon' => 'fas fa-fw fa-cog',
+                    'submenu' => [
+                        ['text' => 'profile', 'url' => 'admin/settings', 'icon' => 'fas fa-fw fa-user']
+                    ]
+                ]
+            );
+        });
     }
 }

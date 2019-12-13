@@ -12,11 +12,12 @@ class Program extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'route', 'description',
+        'name', 'route', 'description', 'show_menu', 'icon'
     ];
 
     public static $rules = [
         'name' => "required|max:50",
         'route' => 'required|min:3|max:20', #|unique:users', ATENÇÂO NÂO UTILIZAR UNIQUE POIS NAO FUNCIONA NO UPDATE
+        'show_menu' => 'required|in:S,N',
     ];
 }

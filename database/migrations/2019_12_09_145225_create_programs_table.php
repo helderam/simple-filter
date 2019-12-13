@@ -19,6 +19,8 @@ class CreateProgramsTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('route')->unique();
+            $table->string('show_menu',1)->default('S');
+            $table->string('icon',20);
         });
     }
 

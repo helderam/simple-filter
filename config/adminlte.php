@@ -171,7 +171,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/#69-menu
     |
     */
-
+    
     'menu' => [
         /*
         [
@@ -197,9 +197,10 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],*/
+        ],
+        */
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Menu Filters

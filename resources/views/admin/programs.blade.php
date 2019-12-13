@@ -59,6 +59,8 @@
                 <th> <?php echo simpleColumn('id', 'ID') ?></th>
                 <th> <?php echo simpleColumn('name', 'NOME') ?></th>
                 <th> <?php echo simpleColumn('route', 'ROTA') ?></th>
+                <th> <?php echo simpleColumn('icon', 'ICONE') ?></th>
+                <th> <?php echo simpleColumn('show_menu', 'MOSTRAR NO MENU') ?></th>
                 <th> <?php echo simpleColumn('created_at', 'CRIAÇÂO') ?></th>
                 <th> AÇÔES </th>
               </tr>
@@ -70,6 +72,8 @@
                 <td>{{$program->id}}</td>
                 <td>{{$program->name}}</td>
                 <td>{{$program->route}}</td>
+                <td>{{$program->icon}}</td>
+                <td>{{$program->show_menu}}</td>
                 <td>{{simpleDateFormat($program->created_at)}}</td>
                 <!-- BOTÕES DE AÇÃO -->
                 <td>

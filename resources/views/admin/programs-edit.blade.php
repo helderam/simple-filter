@@ -44,6 +44,14 @@
           {!! Form::text('route', old('route', $program->route), ['placeholder' => 'Rota', 'class' => 'form-control form-control-sm']) !!}
         </div>
       </div>
+
+      <!-- MOSTRAR NO MENU -->
+      <div class="form-group row">
+        {!! Form::label('show_menu', 'Mostrar no menu:', ['class' => 'col-sm-2 col-form-label']) !!}
+        <div class="col-sm-10">
+          {!! Form::text('show_menu', old('show_menu', $program->show_menu), ['placeholder' => 'S/N', 'class' => 'form-control form-control-sm']) !!}
+        </div>
+      </div>
     </div>
 
     <!-- SEGUNDA COLUNA -->
@@ -84,6 +92,14 @@
           <div class="input-group">
             <textarea class="form-control form-control-sm" id="description" name="description" rows="3">{{ old('description', $program->description) }}</textarea>
           </div>
+        </div>
+      </div>
+
+      <!-- ICONE -->
+      <div class="form-group row">
+        {!! Form::label('icon', 'Ícone:', ['class' => 'col-sm-2 col-form-label']) !!}
+        <div class="col-sm-10">
+          {!! Form::text('icon', old('icon', $program->icon), ['placeholder' => 'cog', 'class' => 'form-control form-control-sm']) !!}
         </div>
       </div>
 

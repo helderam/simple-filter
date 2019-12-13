@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Groupas')
+@section('title', 'Grupos')
 
 @section('content')
 
@@ -51,6 +51,7 @@
               <tr>
                 <th> <?php echo simpleColumn('id', 'ID') ?></th>
                 <th> <?php echo simpleColumn('name', 'NOME') ?></th>
+                <th> <?php echo simpleColumn('icon', 'ICONE') ?></th>
                 <th> <?php echo simpleColumn('created_at', 'CRIAÇÂO') ?></th>
                 <th> AÇÔES </th>
               </tr>
@@ -61,6 +62,7 @@
               <tr>
                 <td>{{$group->id}}</td>
                 <td>{{$group->name}}</td>
+                <td>{{$group->icon}}</td>
                 <td>{{simpleDateFormat($group->created_at)}}</td>
                 <!-- BOTÕES DE AÇÃO -->
                 <td>

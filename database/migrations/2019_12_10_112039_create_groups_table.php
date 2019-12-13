@@ -19,6 +19,7 @@ class CreateGroupsTable extends Migration
 
             $table->string('name');
             $table->string('description')->nullable();
+            $table->string('icon',20);
 
         });
     }

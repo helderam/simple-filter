@@ -80,6 +80,14 @@
         </div>
       </div>
 
+      <!-- ICONE -->
+      <div class="form-group row">
+        {!! Form::label('icon', 'Ícone:', ['class' => 'col-sm-2 col-form-label']) !!}
+        <div class="col-sm-10">
+          {!! Form::text('icon', old('icon', $group->icon), ['placeholder' => 'cog', 'class' => 'form-control form-control-sm']) !!}
+        </div>
+      </div>
+
 
     </div>
 

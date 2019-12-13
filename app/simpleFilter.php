@@ -8,6 +8,8 @@
 |
 */
 
+#use Illuminate\Support\Facades\Redirect;
+
 /**
  * Return HTML for forma head with ID or NEW
  *
@@ -166,6 +168,16 @@ function simpleAction($title, $route, $color, $icon = 'fa-edit', $id = null)
   return $html;
 }
 
+
+function simpleMenu($grupo_program, $icon, $submenus){
+  $icon = $icon ?? 'cog';
+  return ['text' => $grupo_program, 'icon' => 'fas fa-fw fa-' . $icon, 'submenu' => $submenus];
+}
+
+function simpleSubmenu($grupo_program, $icon, $rota){
+  $icon = $icon ?? 'cog';
+  return ['text' => $grupo_program, 'icon' => 'fas fa-fw fa-' . $icon, 'url' => $rota];
+}
 /**
  * Store seseeion and return number os records, ordered column and direction
  *
@@ -179,7 +191,15 @@ function simpleParameters($default_column, $order = 'desc')
   #var_dump($controller);
   #echo phpinfo(); exit;
   if ($controller != session('controller')) {
-    session(['controller_before' => session('controller')]);
+    $programs = session('programs', []);
+    $program = substr($controller,1,100);
+    if (!isset($programs[$program])) {
+      #var_dump($program);  dd($programs);
+      #return Redirect::to('/home');
+      #header('Location: /home');
+      echo "SEM PERMISSÂO";
+      dd(); // DESATIVAR AQUI PARA PERMITIR ACESSAR TODOS PROGRAMAS
+    }
     session(['controller' => $controller]);
     session(['column' => $default_column]);
     session(['order' => $order]);
@@ -210,7 +230,7 @@ function simpleParameters($default_column, $order = 'desc')
  * 
  * @return mixed
  */
-function simpleFilter($field, $description='')
+function simpleFilter($field, $description = '')
 {
   $filters = session('filters', []);
   if (isset($_REQUEST[$field])) {

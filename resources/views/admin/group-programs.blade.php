@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Groupas')
+@section('title', 'Grupo de Programas')
 
 @section('content')
 
@@ -13,7 +13,7 @@
 
   <?php 
   $group = session('group');
-  echo simpleHeadTable('Usuários do Grupo:'.$group->name); 
+  echo simpleHeadTable('Usuários do Grupo: '.$group->name); 
   ?>
 
   <!-- CAMPOS PARA FILTRAGEM -->
