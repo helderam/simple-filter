@@ -23,8 +23,8 @@
         <div class="col">
           <!-- FILTRO POR NOME -->
           <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Nome</label>
-            <div class="col-sm-10">
+            <label for="name" class="col-sm-3 col-form-label">Nome</label>
+            <div class="col-sm-9">
               <input class="form-control form-control-sm" id="name" name="name" value="{{session('name')}}" placeholder="Nome">
             </div>
           </div>

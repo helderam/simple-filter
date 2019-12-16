@@ -24,24 +24,24 @@
 
           <!-- ID -->
           <div class="form-group row">
-            <label for="id" class="col-sm-2 col-form-label">Nome</label>
-            <div class="col-sm-10">
+            <label for="id" class="col-sm-3 col-form-label">Nome</label>
+            <div class="col-sm-9">
               <input class="form-control form-control-sm" id="id" name="id" value="{{ old('id', $user->id) }}" placeholder="ID" readonly>
             </div>
           </div>
 
           <!-- NOME -->
           <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Nome</label>
-            <div class="col-sm-10">
+            <label for="name" class="col-sm-3 col-form-label">Nome</label>
+            <div class="col-sm-9">
               <input class="form-control form-control-sm" id="name" name="name" value="{{ old('name', $user->name) }}" placeholder="Nome">
             </div>
           </div>
 
           <!-- E-MAIL -->
           <div class="form-group row">
-            <label for="email" class="col-sm-2 col-form-label">E-Mail</label>
-            <div class="col-sm-10">
+            <label for="email" class="col-sm-3 col-form-label">E-Mail</label>
+            <div class="col-sm-9">
               <input class="form-control form-control-sm" id="email" name="email" value="{{ old('email', $user->email) }}" placeholder="E-Mail">
             </div>
           </div>
@@ -52,7 +52,7 @@
 
           <!-- DATA DE -->
           <div class="form-group row">
-            <div class="col-sm-2">
+            <div class="col-sm-3">
               <label for="Criado" class="col-form-label">Craido em</label>
             </div>
             <div class="col-sm-5">

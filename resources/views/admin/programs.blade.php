@@ -23,23 +23,23 @@
         <div class="col">
           <!-- FILTRO POR NOME -->
           <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Nome</label>
-            <div class="col-sm-10">
+            <label for="name" class="col-sm-3 col-form-label">Nome</label>
+            <div class="col-sm-9">
               <input class="form-control form-control-sm" id="name" name="name" value="{{session('name')}}" placeholder="Nome">
             </div>
           </div>
           <!-- FILTRO POR ROTA -->
           <div class="form-group row">
-            <label for="route" class="col-sm-2 col-form-label">E-Mail</label>
-            <div class="col-sm-10">
+            <label for="route" class="col-sm-3 col-form-label">E-Mail</label>
+            <div class="col-sm-9">
               <input class="form-control form-control-sm" id="route" name="route" value="{{session('route')}}" placeholder="Rota">
             </div>
           </div>
         </div>
 
+      </div>
         <!-- BOTÂO APLICAR FILTRAR -->
         <?php echo simpleApplyFilters() ?>
-      </div>
 
     </div>
   </div>

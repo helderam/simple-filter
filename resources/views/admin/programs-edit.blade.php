@@ -23,32 +23,32 @@
 
       <!-- ID -->
       <div class="form-group row">
-        {!! Form::label('id', 'ID:', ['class' => 'col-sm-2 col-form-label']) !!}
-        <div class="col-sm-10">
+        {!! Form::label('id', 'ID:', ['class' => 'col-sm-3 col-form-label']) !!}
+        <div class="col-sm-9">
           {!! Form::text('id', old('id', $program->id), ['placeholder' => 'ID', 'class' => 'form-control form-control-sm', 'readonly']) !!}
         </div>
       </div>
 
       <!-- NOME -->
       <div class="form-group row">
-        {!! Form::label('name', 'Nome Programa:', ['class' => 'col-sm-2 col-form-label']) !!}
-        <div class="col-sm-10">
+        {!! Form::label('name', 'Nome Programa:', ['class' => 'col-sm-3 col-form-label']) !!}
+        <div class="col-sm-9">
           {!! Form::text('name', old('name', $program->name), ['placeholder' => 'Nome do Programa', 'class' => 'form-control form-control-sm']) !!}
         </div>
       </div>
 
       <!-- ROTA -->
       <div class="form-group row">
-        {!! Form::label('route', 'Rota:', ['class' => 'col-sm-2 col-form-label']) !!}
-        <div class="col-sm-10">
+        {!! Form::label('route', 'Rota:', ['class' => 'col-sm-3 col-form-label']) !!}
+        <div class="col-sm-9">
           {!! Form::text('route', old('route', $program->route), ['placeholder' => 'Rota', 'class' => 'form-control form-control-sm']) !!}
         </div>
       </div>
 
       <!-- MOSTRAR NO MENU -->
       <div class="form-group row">
-        {!! Form::label('show_menu', 'Mostrar no menu:', ['class' => 'col-sm-2 col-form-label']) !!}
-        <div class="col-sm-10">
+        {!! Form::label('show_menu', 'Mostrar no menu:', ['class' => 'col-sm-3 col-form-label']) !!}
+        <div class="col-sm-9">
           {!! Form::text('show_menu', old('show_menu', $program->show_menu), ['placeholder' => 'S/N', 'class' => 'form-control form-control-sm']) !!}
         </div>
       </div>
@@ -59,7 +59,7 @@
 
       <!-- DATA DE CRIAÇÂO -->
       <div class="form-group row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <label for="created_at" class="col-form-label">Criado em</label>
         </div>
         <div class="col-sm-5">
@@ -72,7 +72,7 @@
 
       <!-- DATA DE ALTERAÇÂO -->
       <div class="form-group row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <label for="updated_at" class="col-form-label">Alterado em</label>
         </div>
         <div class="col-sm-5">
@@ -85,7 +85,7 @@
 
       <!-- DESCRIÇÂO -->
       <div class="form-group row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <label for="description" class="col-form-label">Descrição</label>
         </div>
         <div class="col-sm-5">
@@ -97,8 +97,8 @@
 
       <!-- ICONE -->
       <div class="form-group row">
-        {!! Form::label('icon', 'Ícone:', ['class' => 'col-sm-2 col-form-label']) !!}
-        <div class="col-sm-10">
+        {!! Form::label('icon', 'Ícone:', ['class' => 'col-sm-3 col-form-label']) !!}
+        <div class="col-sm-9">
           {!! Form::text('icon', old('icon', $program->icon), ['placeholder' => 'cog', 'class' => 'form-control form-control-sm']) !!}
         </div>
       </div>

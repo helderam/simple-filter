@@ -27,7 +27,7 @@ function simpleFormHead($id)
   $html = "
     <div class='row'>
       <div class='col-9'>
-        <h4> <i class='fa fa-$icon'></i> $program $selected_name</h4>
+        <h4> <i class='fa fa-$icon'></i> &nbsp; $program $selected_name</h4>
       </div>
       <div class='col-3 float-left d-flex justify-content-end'>
         <p>$status</p>

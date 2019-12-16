@@ -23,15 +23,15 @@
         <div class="col">
           <!-- FILTRO POR NOME -->
           <div class="form-group row">
-            <label for="name" class="col-sm-2 col-form-label">Nome</label>
-            <div class="col-sm-10">
+            <label for="name" class="col-sm-3 col-form-label">Nome</label>
+            <div class="col-sm-9">
               <input class="form-control form-control-sm" id="name" name="name" value="{{session('name')}}" placeholder="Nome">
             </div>
           </div>
           <!-- FILTRO POR E-MAIL -->
           <div class="form-group row">
-            <label for="email" class="col-sm-2 col-form-label">E-Mail</label>
-            <div class="col-sm-10">
+            <label for="email" class="col-sm-3 col-form-label">E-Mail</label>
+            <div class="col-sm-9">
               <input class="form-control form-control-sm" id="email" name="email" value="{{session('email')}}" placeholder="E-Mail">
             </div>
           </div>
@@ -41,7 +41,7 @@
         <div class="col">
           <!-- DATA DE -->
           <div class="form-group row">
-            <div class="col-sm-2">
+            <div class="col-sm-3">
               <label for="filtroPeriodo" class="col-form-label">Período</label>
             </div>
             <div class="col-sm-5">
