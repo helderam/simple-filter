@@ -11,7 +11,7 @@
 <!-- LINHA TITULO, PESQUISA/BUSCA E NOVO REGISTRO -->
 <form action="/users" method="get">
 
-  <?php echo simpleHeadTable('Cadastro de Usuários', route('users.create')); ?>
+  <?php echo simpleHeadTable(route('users.create')); ?>
 
   <!-- CAMPOS PARA FILTRAGEM -->
   <div class="collapse" id="filtros">
@@ -103,7 +103,7 @@
                     $user->is_admin == 'S' ? 'Tornar Usuário' : 'Tornar Admin',
                     'users.admin',
                     $user->is_admin == 'S' ? 'danger' : 'success',
-                    'fa-edit',
+                    $user->is_admin == 'S' ? 'fa-lock-open' : 'fa-lock',
                     $user->id
                   );
                   ?>

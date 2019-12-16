@@ -18,13 +18,16 @@
  * 
  * @return string
  */
-function simpleFormHead($title, $id)
+function simpleFormHead($id)
 {
   $status = $id ? 'ID: ' . $id : 'Novo';
+  $program = session('program');
+  $icon = session('icon');
+  $selected_name = session('selected_name');
   $html = "
     <div class='row'>
       <div class='col-9'>
-        <h3>$title</h3>
+        <h4> <i class='fa fa-$icon'></i> $program $selected_name</h4>
       </div>
       <div class='col-3 float-left d-flex justify-content-end'>
         <p>$status</p>
@@ -39,10 +42,10 @@ function simpleFormHead($title, $id)
  *
  * @return string
  */
-function simpleFormButtons($route='')
+function simpleFormButtons($route = '')
 {
   #$route = url()->previous(); #$_SERVER['PATH_INFO'];
-  $buttom = $route ? "<a href='$route' class='btn btn-secondary btn-sm'>Voltar a listagem</a>":'' ;
+  $buttom = $route ? "<a href='$route' class='btn btn-secondary btn-sm'>Voltar a listagem</a>" : '';
   $html = "  
   <div class='row'>
     <div class='col-sm-12'>
@@ -170,14 +173,16 @@ function simpleAction($title, $route, $color, $icon = 'fa-edit', $id = null)
 }
 
 
-function simpleMenu($grupo_program, $icon, $submenus){
+function simpleMenu($grupo_program, $icon, $submenus)
+{
   $icon = $icon ?? 'cog';
   return ['text' => $grupo_program, 'icon' => 'fas fa-fw fa-' . $icon, 'submenu' => $submenus];
 }
 
-function simpleSubmenu($grupo_program, $icon, $rota){
+function simpleSubmenu($grupo_program, $icon, $rota)
+{
   $icon = $icon ?? 'cog';
-  return ['text' => $grupo_program, 'icon' => 'fas fa-fw fa-' . $icon, 'url' => $rota, 'active' => [$rota,$rota.'/*',"regex:@^$rota\?*@"]];
+  return ['text' => $grupo_program, 'icon' => 'fas fa-fw fa-' . $icon, 'url' => $rota, 'active' => [$rota, $rota . '/*', "regex:@^$rota\?*@"]];
 }
 /**
  * Store seseeion and return number os records, ordered column and direction
@@ -193,7 +198,8 @@ function simpleParameters($default_column, $order = 'desc')
   #echo phpinfo(); exit;
   if ($controller != session('controller')) {
     $programs = session('programs', []);
-    $program = substr($controller,1,100);
+    $icons = session('icons', []);
+    $program = substr($controller, 1, 100);
     if (!isset($programs[$program])) {
       #var_dump($program);  dd($programs);
       #return Redirect::to('/home');
@@ -201,11 +207,18 @@ function simpleParameters($default_column, $order = 'desc')
       echo "SEM PERMISSÂO";
       dd('SEM PERMISSÂO'); // DESATIVAR AQUI PARA PERMITIR ACESSAR TODOS PROGRAMAS
     }
+
+    // Limpeza sessão
     session(['controller' => $controller]);
     session(['column' => $default_column]);
     session(['order' => $order]);
     session(['filters' => array()]);
     session(['descriptions' => []]);
+    session(['back' => session('route_back')]);
+    session(['icon' => $icons[$program]]);
+    session(['program' => $programs[$program]]);
+    session(['selected_id' => session('id')]);
+    session(['selected_name' => session('name')]);
   }
   $records = request('records', session('records', 5));
   $column = request('column', session('column')) ?? $default_column;
@@ -249,13 +262,17 @@ function simpleFilter($field, $description = '')
 /**
  * Return head of table with filter button and new record button
  *
- * @param  string  $title
  * @param  string  $route_create_new
  * 
  * @return string
  */
-function simpleHeadTable($title, $route_create_new = null)
+function simpleHeadTable($route_create_new = null)
 {
+  $icon = session('icon');
+  $program = session('program');
+  $selected_name = session('selected_name');
+
+  // Pega os filtro atuais
   $filters = '';
   $descriptions = session('descriptions');
   if ($descriptions) {
@@ -276,25 +293,23 @@ function simpleHeadTable($title, $route_create_new = null)
       <span class='ladda-label'> <i class='fa fa-plus'></i> Incluir</span>
     </a>
     " : '';
-  /*
-    $route_back = session('controller_before');
-    $include_back = $route_back ?
+  $back_button = session('back');
+  $include_back = $back_button ?
     "
     <!-- BOTÃO PARA VOLTAR -->
-    <a href='$route_back' class='btn btn-dark' data-style='zoom-in'>
-      <span class='ladda-label'> <i class='fa fa-plus'></i> Voltar</span>
+    <a href='$back_button' class='btn btn-dark' data-style='zoom-in'>
+      <span class='ladda-label'> <i class='fa fa-angle-double-left'></i> Voltar</span>
     </a>
-
     " : '';
-  */
+
   return "
     <div class='row'>
 
-    <div class='col-4'>
-      <h2>$title</h2>
+    <div class='col-5'>
+      <h4> <i class='fa fa-$icon'></i> $program $selected_name</h4>
     </div>
     
-    <div class='col-5'>
+    <div class='col-4'>
       $filters
     </div>
 
@@ -305,6 +320,7 @@ function simpleHeadTable($title, $route_create_new = null)
             Filtrar
           </button>
           $include_create_new
+          $include_back
         </p>
       </div>
     </div>

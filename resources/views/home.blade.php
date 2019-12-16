@@ -12,6 +12,10 @@
             <div class="card">
                 <div class="card-body">
                     <p class="mb-0">You are logged in!</p>
+                    <?php
+                    $sessao = session()->all();
+                    var_dump($sessao);
+                    ?>
                 </div>
             </div>
         </div>

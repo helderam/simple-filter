@@ -25,8 +25,8 @@ class GroupProgramController extends Controller
         list($records, $column, $order) = simpleParameters('active', 'desc');
 
         // Recupera o grupo selecionado na sessão
-        $group = session('group');
-        if (empty($group)) return redirect()->route('home');
+        $selected_id = session('selected_id');
+        if (empty($selected_id)) return redirect()->route('home');
 
         // Campos de filtragem
         $name = simpleFilter('name', 'Nome');
@@ -35,8 +35,7 @@ class GroupProgramController extends Controller
         $registros = DB::table('programs')
             ->leftJoin('group_programs', 'programs.id', '=', 'group_programs.program_id')
             ->leftJoin('groups', 'groups.id', '=', 'group_programs.group_id')
-            ->where('group_programs.group_id', $group->id)
-            ->orWhere('group_programs.group_id', null)
+            ->where('group_programs.group_id', $selected_id)
             ->select(
                 'group_programs.id as id',
                 'programs.id as program_id',

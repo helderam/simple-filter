@@ -13,7 +13,7 @@
 
   <?php 
   $group = session('group');
-  echo simpleHeadTable('Usuários do Grupo: '.$group->name); 
+  echo simpleHeadTable(); 
   ?>
 
   <!-- CAMPOS PARA FILTRAGEM -->

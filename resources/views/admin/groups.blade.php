@@ -11,7 +11,7 @@
 <!-- LINHA TITULO, PESQUISA/BUSCA E NOVO REGISTRO -->
 <form action="/groups" method="get">
 
-  <?php echo simpleHeadTable('Cadastro de Grupos', route('groups.create')); ?>
+  <?php echo simpleHeadTable(route('groups.create')); ?>
 
   <!-- CAMPOS PARA FILTRAGEM -->
   <div class="collapse" id="filtros">

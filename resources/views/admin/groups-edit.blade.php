@@ -97,5 +97,77 @@
   <?php echo simpleFormButtons(route('groups.index')) ?>
 
 </div> <!-- card -->
+
+<!-- RELAÇÂO DE USUARIOS -->
+<div class="card card-body">
+  <div class="row">
+    <div class="col-12 float-left d-flex justify-content-end">
+      <p>
+        <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#usuarios" aria-expanded="true" aria-controls="usuarios">
+          Usuários associados ({{count($users) * 5}})
+        </button>
+        <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#programas" aria-expanded="true" aria-controls="programas">
+          Programas associados ({{count($programs) * 5}})
+        </button>
+      </p>
+    </div>
+  </div>
+
+<!-- USUARIOS -->
+<div class="collapse" id="usuarios">
+  <div class="card card-body">
+
+    <table class="bg-white table table-striped table-hover nowrap rounded table-striped table-sm" cellspacing="0">
+        <thead>
+          <tr>
+            <th> NOME </th>
+            <th> NOME</th>
+            <th> NOME</th>
+            <th> NOME</th>
+            <th> NOME</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @foreach($users as $linha => $names)
+          <tr>
+            @foreach($names as $name)
+              <td>{{$name}}</td>
+            @endforeach
+          </tr>
+          @endforeach
+        </body>
+    </table>
+  </div>
+</div>
+
+<!-- PROGRAMAS -->
+<div class="collapse" id="programas">
+  <div class="card card-body">
+
+    <table class="bg-white table table-striped table-hover nowrap rounded table-striped table-sm" cellspacing="0">
+        <thead>
+          <tr>
+            <th> NOME </th>
+            <th> NOME</th>
+            <th> NOME</th>
+            <th> NOME</th>
+            <th> NOME</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @foreach($programs as $linha => $names)
+          <tr>
+            @foreach($names as $name)
+              <td>{{$name}}</td>
+            @endforeach
+          </tr>
+          @endforeach
+        </body>
+    </table>
+  </div>
+</div>
+
 {!! Form::close() !!}
 @stop

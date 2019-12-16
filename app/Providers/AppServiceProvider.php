@@ -53,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
             $program_icons = [];
             $group_icons = [];
             $programs = [];
+            $icons = [];
             $anterior = '';
 
             foreach ($menus as $menu) {
@@ -62,12 +63,14 @@ class AppServiceProvider extends ServiceProvider
                 $program_icons[$menu->programa] = $menu->icon;
                 $group_icons[$menu->grupo] = $menu->group_icon;
                 $programs[$menu->route] = $menu->programa;
+                $icons[$menu->route] = $menu->icon;
                 if (!$anterior) $anterior = $menu->grupo;
             }
             // Armazena memoria para depois validar cada mudança de programa
             $programs['home'] = 'home';
             $programs['perfil'] = 'perfil';
             session(['programs' => $programs]);
+            session(['icons' => $icons]);
 
             // Desenha menu
             $submenus = [];

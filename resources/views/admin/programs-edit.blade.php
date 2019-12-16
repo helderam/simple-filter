@@ -6,7 +6,7 @@
 
 <!-- MOSTRA MENSAGEM E ERROS -->
 {!! simpleMessage($errors) !!}
-{!! simpleFormHead('Cadastro Usuário', $program->id) !!}
+{!! simpleFormHead($program->id) !!}
 
 
 <!-- FORMULARIO -->

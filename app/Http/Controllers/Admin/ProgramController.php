@@ -119,11 +119,12 @@ class ProgramController extends Controller
                 $groupProgram->save();
             }
         }
-        // Salva grupo selecionado na memoria
-        session(['group' => $group]);
         // Redireciona para controlador de programas por grupo
         return redirect()
             ->route('group-programs.index')
+            ->with('route_back', route('groups.index')) # botão de retorno para grupos
+            ->with('id', $group->id)
+            ->with('name', $group->name)
             ->with('success', "Grupo $group->name selecionado");
 
     }

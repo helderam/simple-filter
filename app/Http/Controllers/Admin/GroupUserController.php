@@ -20,13 +20,12 @@ class GroupUserController extends Controller
      */
     public function index()
     {
-        $group = session('group');
-        if (empty($group)) return redirect()->route('home');
-        #Redirect::to('home')->send();
-
         #var_dump(session()->all());
         // Obtem quantidade de registros, coluna de ordenação e ordem 
         list($records, $column, $order) = simpleParameters('active', 'desc');
+
+        $selected_id = session('selected_id');
+        if (empty($selected_id)) dd(session()->all());#return redirect()->route('home');
 
         // Campos de filtragem
         $name = simpleFilter('name', 'Nome');
@@ -38,7 +37,7 @@ class GroupUserController extends Controller
         $registros = DB::table('users')
             ->leftJoin('group_users', 'users.id', '=', 'group_users.user_id')
             ->leftJoin('groups', 'groups.id', '=', 'group_users.group_id')
-            ->where('group_users.group_id', $group->id)
+            ->where('group_users.group_id', $selected_id)
             ->select(
                 'group_users.id as id',
                 'users.id as user_id',

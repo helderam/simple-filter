@@ -11,7 +11,7 @@
 <!-- LINHA TITULO, PESQUISA/BUSCA E NOVO REGISTRO -->
 <form action="/programs" method="get">
 
-  <?php echo simpleHeadTable('Cadastro de Programas', route('programs.create')); ?>
+  <?php echo simpleHeadTable(route('programs.create')); ?>
 
   <!-- CAMPOS PARA FILTRAGEM -->
   <div class="collapse" id="filtros">
