@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'NewSAC5',
+    'title' => 'New',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -30,12 +30,12 @@ return [
     |
     */
 
-    'logo' => '<b>New</b>SAC5',
+    'logo' => '<b>New</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image-xl',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'NewSAC5',
+    'logo_img_alt' => 'New',
 
     /*
     |--------------------------------------------------------------------------

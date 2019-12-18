@@ -37,11 +37,11 @@ class AppServiceProvider extends ServiceProvider
             $menus = DB::select(" 
                 select g.id, g.name grupo, u.name, p.name programa, gu.user_id, gp.program_id, 
                        p.route, p.show_menu, p.icon, g.icon as group_icon
-                from sac5.bi_groups g
-                join sac5.bi_group_users gu on gu.group_id = g.id
-                join sac5.bi_group_programs gp on gp.group_id = g.id
-                join sac5.bi_users u on u.id = gu.user_id
-                join sac5.bi_programs p on p.id = gp.program_id
+                from .groups g
+                join .group_users gu on gu.group_id = g.id
+                join .group_programs gp on gp.group_id = g.id
+                join .users u on u.id = gu.user_id
+                join .programs p on p.id = gp.program_id
                 where gu.active = 'S' and gp.active = 'S'
                 and gu.user_id = $id
                 order by g.name desc, p.name 

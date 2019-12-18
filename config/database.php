@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sac5'),
+    'default' => env('DB_CONNECTION', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ return [
 
     'connections' => [
 
-        'sac5' => [
+        '' => [
             'prefix' => env('DB_PREFIX'),
             'driver' => 'oracle',
             'host' => env('DB_HOST'),

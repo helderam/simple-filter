@@ -51,8 +51,8 @@ class GroupUserController extends Controller
             ->orderBy($column, $order);
             #->toSql(); dd($registros);
 
-        if ($name) $registros->whereRaw('lower(bi_users.name) like ?', strtolower("%{$name}%")); # Desconsidera case
-        if ($email) $registros->whereRaw('lower(bi_users.email) like ?', strtolower("%{$email}%")); # Desconsidera case
+        if ($name) $registros->whereRaw('lower(users.name) like ?', strtolower("%{$name}%")); # Desconsidera case
+        if ($email) $registros->whereRaw('lower(users.email) like ?', strtolower("%{$email}%")); # Desconsidera case
         $groupUsers = $registros->paginate($records);
 
         // Retorna para a view

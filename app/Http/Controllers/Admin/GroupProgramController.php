@@ -49,7 +49,7 @@ class GroupProgramController extends Controller
             ->orderBy($column, $order);
             #->toSql();
         #dd($registros); 
-        if ($name) $registros->whereRaw('lower(bi_programs.name) like ?', strtolower("%{$name}%")); # Desconsidera case
+        if ($name) $registros->whereRaw('lower(programs.name) like ?', strtolower("%{$name}%")); # Desconsidera case
         $groupPrograms = $registros->paginate($records);
 
         // Retorna para a view
