@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/licence_validate/{id}', 'Admin\LicenceController@licence_validate')->name('licences.validate');
+
 Auth::routes();
 
 Route::get('/home', function() {
@@ -50,6 +52,11 @@ Route::group(['middleware' => 'auth'], function()
     // Cadastro de programas no grupo
     Route::resources([
         'group-programs' => 'Admin\GroupProgramController',
+    ]); 
+
+    // Licenças
+    Route::resources([
+        'licences' => 'Admin\LicenceController',
     ]); 
 
 });

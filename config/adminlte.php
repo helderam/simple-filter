@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'New',
+    'title' => 'Agenda Entrega',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -30,12 +30,12 @@ return [
     |
     */
 
-    'logo' => '<b>New</b>',
+    'logo' => '<b>New</b>Agenda',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image-xl',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'New',
+    'logo_img_alt' => 'AgendaEntrega',
 
     /*
     |--------------------------------------------------------------------------

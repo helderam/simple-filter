@@ -17,9 +17,13 @@ class CreateGroupUsersTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->bigIncrements('group_id');
-            $table->bigIncrements('user_id');
-            $table->strings('active',1);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references('id')->on('groups');
+
+            $table->string('active', 1)->default('S');
         });
     }
 

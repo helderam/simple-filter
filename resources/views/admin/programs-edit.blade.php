@@ -48,8 +48,13 @@
       <!-- MOSTRAR NO MENU -->
       <div class="form-group row">
         {!! Form::label('show_menu', 'Mostrar no menu:', ['class' => 'col-sm-3 col-form-label']) !!}
-        <div class="col-sm-9">
+        <div class="col-sm-2">
           {!! Form::text('show_menu', old('show_menu', $program->show_menu), ['placeholder' => 'S/N', 'class' => 'form-control form-control-sm']) !!}
+        </div>
+
+        {!! Form::label('active', 'Mostrar no menu:', ['class' => 'col-sm-3 col-form-label']) !!}
+        <div class="col-sm-2">
+          {!! Form::text('active', old('active', $program->active), ['placeholder' => 'S/N', 'class' => 'form-control form-control-sm']) !!}
         </div>
       </div>
     </div>

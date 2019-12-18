@@ -5,6 +5,9 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use App\Licence;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -46,6 +49,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Tratamento para pegar cliente/licença pela URL
+        if ($exception instanceof NotFoundHttpException) {
+            $client = $request->path();
+            #dd($client);
+            $licence = Licence::where('name', $client)->first();
+            if ($licence) {
+                $licence_id = base64_encode($licence->id * 7000);
+                return redirect()->route('licences.validate', ['id' => $licence_id]);
+            }
+        }
         return parent::render($request, $exception);
     }
 }

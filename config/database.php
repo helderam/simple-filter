@@ -2,15 +2,6 @@
 
 use Illuminate\Support\Str;
 
-// PDO ORACLE configuration
-$options =  array(
-    \PDO::ATTR_PERSISTENT => true,
-    \PDO::ATTR_CASE,
-    \PDO::CASE_LOWER,
-    \PDO::ATTR_ERRMODE,
-    \PDO::ERRMODE_EXCEPTION,
- );
-
 return [
 
     /*
@@ -24,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', ''),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -44,19 +35,24 @@ return [
 
     'connections' => [
 
-        '' => [
-            'prefix' => env('DB_PREFIX'),
-            'driver' => 'oracle',
-            'host' => env('DB_HOST'),
-            'port' => env('DB_PORT'),
-            'database' => env('DB_DATABASE'),
-            'username' => env('DB_USERNAME'),
-            'password' => env('DB_PASSWORD'),
-            'charset' => 'utf8',
-            'options' => $options,
-        ],       
-
+        'mysql' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', ''),
+            'username' => env('DB_USERNAME', ''),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------

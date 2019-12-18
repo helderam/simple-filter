@@ -17,9 +17,13 @@ class CreateGroupProgramsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->bigIncrements('group_id');
-            $table->bigIncrements('program_id');
-            $table->strings('active',1);
+            $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references('id')->on('groups');
+
+            $table->unsignedBigInteger('program_id');
+            $table->foreign('program_id')->references('id')->on('programs');
+
+            $table->string('active', 1)->default('S');
         });
     }
 
