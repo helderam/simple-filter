@@ -11,7 +11,7 @@
 <!-- LINHA TITULO, PESQUISA/BUSCA E NOVO REGISTRO -->
 <form action="/users" method="get">
 
-  <?php echo simpleHeadTable(route('users.create')); ?>
+  <?php echo simpleHeadTable(); ?>
 
   <!-- CAMPOS PARA FILTRAGEM -->
   <div class="collapse" id="filtros">
@@ -25,14 +25,14 @@
           <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label">Nome</label>
             <div class="col-sm-9">
-              <input class="form-control form-control-sm" id="name" name="name" value="{{session('name')}}" placeholder="Nome">
+              <input class="form-control form-control-sm" id="name" name="name" value="{{simpleFilter('name')}}" placeholder="Nome">
             </div>
           </div>
           <!-- FILTRO POR E-MAIL -->
           <div class="form-group row">
             <label for="email" class="col-sm-3 col-form-label">E-Mail</label>
             <div class="col-sm-9">
-              <input class="form-control form-control-sm" id="email" name="email" value="{{session('email')}}" placeholder="E-Mail">
+              <input class="form-control form-control-sm" id="email" name="email" value="{{simpleFilter('email')}}" placeholder="E-Mail">
             </div>
           </div>
         </div>

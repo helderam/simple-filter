@@ -6,7 +6,7 @@
 
 <!-- MOSTRA MENSAGEM E ERROS -->
 {!! simpleMessage($errors) !!}
-{!! simpleFormHead('Cadastro Grupos', $group->id) !!}
+{!! simpleFormHead($group->id) !!}
 
 
 <!-- FORMULARIO -->
@@ -98,6 +98,7 @@
 
 </div> <!-- card -->
 
+@if (isset($users))
 <!-- RELAÇÂO DE USUARIOS -->
 <div class="card card-body">
   <div class="row">
@@ -168,6 +169,7 @@
     </table>
   </div>
 </div>
+@endif
 
 {!! Form::close() !!}
 @stop

@@ -6,7 +6,7 @@
 
 <!-- MOSTRA MENSAGEM E ERROS -->
 <?php echo simpleMessage($errors) ?>
-<?php echo simpleFormHead('Cadastro Usuário', $user->id) ?> 
+<?php echo simpleFormHead($user->id) ?> 
 
 
 <!-- FORMULARIO -->

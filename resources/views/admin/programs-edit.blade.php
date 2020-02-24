@@ -52,7 +52,7 @@
           {!! Form::text('show_menu', old('show_menu', $program->show_menu), ['placeholder' => 'S/N', 'class' => 'form-control form-control-sm']) !!}
         </div>
 
-        {!! Form::label('active', 'Mostrar no menu:', ['class' => 'col-sm-3 col-form-label']) !!}
+        {!! Form::label('active', 'Ativo:', ['class' => 'col-sm-3 col-form-label']) !!}
         <div class="col-sm-2">
           {!! Form::text('active', old('active', $program->active), ['placeholder' => 'S/N', 'class' => 'form-control form-control-sm']) !!}
         </div>

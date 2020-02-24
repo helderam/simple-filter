@@ -13,8 +13,10 @@
                 <div class="card-body">
                     <p class="mb-0">You are logged in!</p>
                     <?php
-                    $sessao = session()->all();
-                    var_dump($sessao);
+                    $store_ids = session('store_ids');
+                    if (empty($store_ids)) {
+                        echo "ATENÇÃO: USUÁRIO SEM LOJA ASSOCIADO !!!";
+                    }
                     ?>
                 </div>
             </div>

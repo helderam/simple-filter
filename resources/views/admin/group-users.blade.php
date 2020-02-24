@@ -13,7 +13,7 @@
 
   <?php 
   $group = session('group');
-  echo simpleHeadTable(); 
+  echo simpleHeadTable(false); 
   ?>
 
   <!-- CAMPOS PARA FILTRAGEM -->
@@ -28,14 +28,14 @@
           <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label">Nome</label>
             <div class="col-sm-9">
-              <input class="form-control form-control-sm" id="name" name="name" value="{{session('name')}}" placeholder="Nome">
+              <input class="form-control form-control-sm" id="name" name="name" value="{{simpleFilter('name')}}" placeholder="Nome">
             </div>
           </div>
           <!-- FILTRO POR EMAIL -->
           <div class="form-group row">
             <label for="email" class="col-sm-3 col-form-label">E-Mail</label>
             <div class="col-sm-9">
-              <input class="form-control form-control-sm" id="email" name="email" value="{{session('email')}}" placeholder="E-Mail">
+              <input class="form-control form-control-sm" id="email" name="email" value="{{simpleFilter('email')}}" placeholder="E-Mail">
             </div>
           </div>
         </div>
