@@ -110,10 +110,6 @@ class GroupController extends Controller
                 $groupUser->save();
             }
         }
-        // Salva grupo selecionado na memoria
-        #session(['selected_id' => $group->id]);
-        #session(['selected_name' => $group->name]);
-        #dd($group);
         
         // Redireciona para controlador de usuários por grupo
         return redirect()

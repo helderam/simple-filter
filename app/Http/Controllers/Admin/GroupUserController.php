@@ -25,7 +25,7 @@ class GroupUserController extends Controller
         list($records, $column, $order) = simpleParameters('active', 'desc');
 
         $selected_id = session('selected_id');
-        if (empty($selected_id)) dd(session()->all());#return redirect()->route('home');
+        if (empty($selected_id)) return redirect()->route('home');
 
         // Campos de filtragem
         $name = simpleFilter('name', 'Nome');
